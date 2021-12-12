@@ -16,3 +16,4 @@
 /devenv/.env
 /runserver
 /main
+/endpoints
