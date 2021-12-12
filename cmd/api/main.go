@@ -22,5 +22,5 @@ func DoubleHandler(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	w.WriteHeader(http.StatusOK)
 	num := vars["number"]
-	fmt.Fprintf(w, "Number: %v\n", num)
+	fmt.Fprintf(w, "Number wow: %v\n", num)
 }
