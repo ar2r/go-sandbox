@@ -1,4 +1,4 @@
-module go-docker
+module hasanov.ru/go-docker
 
 go 1.17
 
