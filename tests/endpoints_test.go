@@ -1,4 +1,4 @@
-package main
+package tests
 
 import (
 	"github.com/gorilla/mux"
@@ -19,7 +19,7 @@ func TestHealthCheckHandler(t *testing.T) {
 	rr := httptest.NewRecorder()
 
 	router := mux.NewRouter()
-	router.HandleFunc("/number/{number}", NumberHandler)
+	router.HandleFunc("/number/{number}", go_docker.main.NumberHandler)
 	router.ServeHTTP(rr, req)
 
 	// Check the status code is what we expect.
