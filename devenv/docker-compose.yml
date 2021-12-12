@@ -1,0 +1,18 @@
+version: "3"
+
+services:
+  go-docker-image:
+    build:
+      context: ../
+      dockerfile: docker/go/Dockerfile
+    ports:
+      - '${GO_EXPOSE_PORT}:80'
+    volumes:
+      - "../:/app"
+
+networks:
+  selfteam-components-net:
+    name: selfteam-components-net
+    driver: bridge
+    ipam:
+      driver: default

@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+OP=$1
+
+if [ "${OP}" = "up" ]; then
+    docker-compose -f devenv/docker-compose.yml --project-directory=devenv up -d --remove-orphans
+fi
+
+if [ "${OP}" = "down" ]; then
+    docker-compose -f devenv/docker-compose.yml --project-directory=devenv down
+fi
+
+if [ "${OP}" = "rebuild" ]; then
+    docker-compose -f devenv/docker-compose.yml --project-directory=devenv down
+    docker-compose -f devenv/docker-compose.yml --project-directory=devenv up -d --build --remove-orphans
+    echo "Rebuild done!"
+    docker ps
+fi
+
+if [ "${OP}" = "flush-db" ]; then
+    echo "Incomplete :-("
+fi
