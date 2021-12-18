@@ -11,6 +11,8 @@
 
 ### Postgres
 
+Default port: 5432
+
 - Default:
   - Login: docker
   - Password: 4757
