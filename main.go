@@ -38,6 +38,7 @@ func main() {
 		"size":   10,
 	}).Info("A group of walrus emerges from the ocean")
 
+	// Регистрация методов API
 	router := mux.NewRouter()
 	router.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintf(w, "Привет мир!")
@@ -46,6 +47,7 @@ func main() {
 	router.HandleFunc("/json/{number:[0-9]+}", app.JsonHandler)
 	app.logger.Info("Routes registered")
 
+	// Запуск сервера
 	srv := &http.Server{
 		Handler: router,
 		Addr:    ":80",
