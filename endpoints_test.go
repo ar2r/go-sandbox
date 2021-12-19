@@ -2,12 +2,16 @@ package main
 
 import (
 	"github.com/gorilla/mux"
+	log "github.com/sirupsen/logrus"
 	"net/http"
 	"net/http/httptest"
 	"testing"
 )
 
 func TestHealthCheckHandler(t *testing.T) {
+	app := &application{
+		log: log.New(),
+	}
 	// Create a request to pass to our handler. We don't have any query parameters for now, so we'll
 	// pass 'nil' as the third parameter.
 	req, err := http.NewRequest("GET", "/number/123", nil)
@@ -19,7 +23,7 @@ func TestHealthCheckHandler(t *testing.T) {
 	rr := httptest.NewRecorder()
 
 	router := mux.NewRouter()
-	router.HandleFunc("/number/{number}", NumberHandler)
+	router.HandleFunc("/number/{number}", app.NumberHandler)
 	router.ServeHTTP(rr, req)
 
 	// Check the status code is what we expect.
