@@ -11,29 +11,29 @@ import (
 
 // Структура для хранения зависимостей
 type application struct {
-	logger *log.Logger
+	log *log.Logger
 }
 
 func main() {
 	// Добавляем json логирование
-	myLogger := log.New()
-	myLogger.SetFormatter(&log.JSONFormatter{})
-	myLogger.SetOutput(os.Stdout)
-	myLogger.SetLevel(log.DebugLevel)
+	myLog := log.New()
+	myLog.SetFormatter(&log.JSONFormatter{})
+	myLog.SetOutput(os.Stdout)
+	myLog.SetLevel(log.DebugLevel)
 
 	// Конфигурация приложения
 	app := &application{
-		logger: myLogger,
+		log: myLog,
 	}
 
 	// Пример логирования
-	app.logger.Error("Error Message")
-	app.logger.Warning("Warning Message")
-	app.logger.Info("Info message")
-	app.logger.Debug("Debug Message")
-	app.logger.Trace("Trace message")
+	app.log.Error("Error Message")
+	app.log.Warning("Warning Message")
+	app.log.Info("Info message")
+	app.log.Debug("Debug Message")
+	app.log.Trace("Trace message")
 
-	app.logger.WithFields(log.Fields{
+	app.log.WithFields(log.Fields{
 		"animal": "walrus",
 		"size":   10,
 	}).Info("A group of walrus emerges from the ocean")
@@ -45,7 +45,7 @@ func main() {
 	})
 	router.HandleFunc("/number/{number:[0-9]+}", app.NumberHandler)
 	router.HandleFunc("/json/{number:[0-9]+}", app.JsonHandler)
-	app.logger.Info("Routes registered")
+	app.log.Info("Routes registered")
 
 	// Запуск сервера
 	srv := &http.Server{
@@ -55,6 +55,6 @@ func main() {
 		WriteTimeout: 15 * time.Second,
 		ReadTimeout:  15 * time.Second,
 	}
-	app.logger.Info("Server running. Waiting for income requests.")
-	app.logger.Fatal(srv.ListenAndServe())
+	app.log.Info("Server running. Waiting for income requests.")
+	app.log.Fatal(srv.ListenAndServe())
 }

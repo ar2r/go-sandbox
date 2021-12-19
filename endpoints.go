@@ -7,7 +7,7 @@ import (
 )
 
 func (app *application) NumberHandler(w http.ResponseWriter, r *http.Request) {
-	app.logger.Info("Входящий запрос NumberHandler")
+	app.log.Info("Входящий запрос NumberHandler")
 
 	vars := mux.Vars(r)
 	w.WriteHeader(http.StatusOK)
@@ -16,7 +16,7 @@ func (app *application) NumberHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func (app *application) JsonHandler(w http.ResponseWriter, r *http.Request) {
-	app.logger.Info("Входящий запрос JsonHandler")
+	app.log.Info("Входящий запрос JsonHandler")
 
 	vars := mux.Vars(r)
 	num := vars["number"]
