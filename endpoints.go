@@ -1,8 +1,11 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"github.com/gorilla/mux"
+	"hasanov.ru/go-docker/api"
+	"math/rand"
 	"net/http"
 )
 
@@ -24,4 +27,38 @@ func (app *application) JsonHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
 	fmt.Fprintf(w, `{"value": %v}`, num)
+}
+
+func (app *application) CreateHandler(w http.ResponseWriter, r *http.Request) {
+	app.log.Info("Входящий запрос CreateHandler")
+
+	var req api.CreatePasteBin
+	err := json.NewDecoder(r.Body).Decode(&req)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusOK)
+
+	res := api.PasteBin{Id: rand.Uint64(), Title: req.Title, Content: req.Content}
+	json.NewEncoder(w).Encode(res)
+}
+
+func (app *application) GetHandler(w http.ResponseWriter, r *http.Request) {
+	app.log.Info("Входящий запрос GetHandler")
+
+	var req api.GetPasteBin
+	err := json.NewDecoder(r.Body).Decode(&req)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusOK)
+
+	res := api.PasteBin{Id: req.Id, Title: "Привет", Content: "Пластимассовый мир"}
+	json.NewEncoder(w).Encode(res)
 }

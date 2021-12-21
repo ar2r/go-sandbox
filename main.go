@@ -45,6 +45,8 @@ func main() {
 	})
 	router.HandleFunc("/number/{number:[0-9]+}", app.NumberHandler)
 	router.HandleFunc("/json/{number:[0-9]+}", app.JsonHandler)
+	router.HandleFunc("/create", app.CreateHandler).Methods("post")
+	router.HandleFunc("/get", app.GetHandler).Methods("post")
 	app.log.Info("Routes registered")
 
 	// Запуск сервера
