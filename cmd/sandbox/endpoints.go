@@ -3,8 +3,8 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/ar2r/go-sandbox/cmd/sandbox/dto"
 	"github.com/gorilla/mux"
-	"hasanov.ru/go-docker/api"
 	"math/rand"
 	"net/http"
 )
@@ -32,7 +32,7 @@ func (app *application) JsonHandler(w http.ResponseWriter, r *http.Request) {
 func (app *application) CreateHandler(w http.ResponseWriter, r *http.Request) {
 	app.log.Info("Входящий запрос CreateHandler")
 
-	var req api.CreatePasteBin
+	var req dto.CreatePasteBinRequest
 	err := json.NewDecoder(r.Body).Decode(&req)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusBadRequest)
@@ -42,14 +42,14 @@ func (app *application) CreateHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
 
-	res := api.PasteBin{Id: rand.Uint64(), Title: req.Title, Content: req.Content}
+	res := dto.PasteBinDto{Id: rand.Uint64(), Title: req.Title, Content: req.Content}
 	json.NewEncoder(w).Encode(res)
 }
 
 func (app *application) GetHandler(w http.ResponseWriter, r *http.Request) {
 	app.log.Info("Входящий запрос GetHandler")
 
-	var req api.GetPasteBin
+	var req dto.GetPasteBinRequest
 	err := json.NewDecoder(r.Body).Decode(&req)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusBadRequest)
@@ -59,6 +59,6 @@ func (app *application) GetHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
 
-	res := api.PasteBin{Id: req.Id, Title: "Привет", Content: "Пластимассовый мир"}
+	res := dto.PasteBinDto{Id: req.Id, Title: "Привет", Content: "Пластимассовый мир"}
 	json.NewEncoder(w).Encode(res)
 }

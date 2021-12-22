@@ -1,4 +1,4 @@
-module hasanov.ru/go-docker
+module github.com/ar2r/go-sandbox
 
 go 1.17
 

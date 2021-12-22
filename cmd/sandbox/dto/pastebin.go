@@ -1,15 +1,19 @@
-package api
+package dto
 
-type GetPasteBin struct {
+// Запросы
+
+type GetPasteBinRequest struct {
 	Id uint64 `json:"id"`
 }
 
-type CreatePasteBin struct {
+type CreatePasteBinRequest struct {
 	Title   string `json:"title"`
 	Content string `json:"content"`
 }
 
-type PasteBin struct {
+// Ответы
+
+type PasteBinDto struct {
 	Id      uint64 `json:"id"`
 	Title   string `json:"title"`
 	Content string `json:"content"`
