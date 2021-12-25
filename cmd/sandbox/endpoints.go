@@ -3,7 +3,9 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/ar2r/go-sandbox/cmd/sandbox/dto"
+	"github.com/ar2r/go-sandbox/cmd/sandbox/colors"
+	"github.com/ar2r/go-sandbox/cmd/sandbox/dtos"
+	"github.com/ar2r/go-sandbox/cmd/sandbox/words"
 	"github.com/gorilla/mux"
 	"math/rand"
 	"net/http"
@@ -32,7 +34,7 @@ func (app *application) JsonHandler(w http.ResponseWriter, r *http.Request) {
 func (app *application) CreateHandler(w http.ResponseWriter, r *http.Request) {
 	app.log.Info("Входящий запрос CreateHandler")
 
-	var req dto.CreatePasteBinRequest
+	var req dtos.CreatePasteBinRequest
 	err := json.NewDecoder(r.Body).Decode(&req)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusBadRequest)
@@ -42,15 +44,21 @@ func (app *application) CreateHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
 
-	res := dto.PasteBinDto{Id: rand.Uint64(), Title: req.Title, Content: req.Content}
+	res := dtos.PasteBinDto{Id: rand.Uint64(), Title: req.Title, Content: req.Content}
 	json.NewEncoder(w).Encode(res)
 }
 
 func (app *application) GetHandler(w http.ResponseWriter, r *http.Request) {
 	app.log.Info("Входящий запрос GetHandler")
 
-	var req dto.GetPasteBinRequest
+	var req dtos.GetPasteBinRequest
 	err := json.NewDecoder(r.Body).Decode(&req)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+
+	colorizedWord, err := colors.Colorize("Пласстмассовый мир победил")
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
@@ -59,6 +67,6 @@ func (app *application) GetHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
 
-	res := dto.PasteBinDto{Id: req.Id, Title: "Привет", Content: "Пластимассовый мир"}
+	res := dtos.PasteBinDto{Id: req.Id, Title: words.GetWord(), Content: colorizedWord}
 	json.NewEncoder(w).Encode(res)
 }
