@@ -1,3 +1,7 @@
+github.com/ar2r/go-example-module v1.2.0 h1:i8dz8inBWD5WjLnLxUWgVo0suQn4jDNXW+04DXYv6DM=
+github.com/ar2r/go-example-module v1.2.0/go.mod h1:tScLiGYrzi5EGu8jXQz54w4iwMd4ZjuqqFVfMragMrk=
+github.com/ar2r/go-example-module v1.3.0 h1:e1lg5Di2x4GpMv0m8t6Bxyb4BXCHLIxsKEkIYQppQVE=
+github.com/ar2r/go-example-module v1.3.0/go.mod h1:tScLiGYrzi5EGu8jXQz54w4iwMd4ZjuqqFVfMragMrk=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/fatih/color v1.9.0 h1:8xPHl4/q1VyqGIPif1F+1V3Y3lSmrq01EabUW3CoW5s=
 github.com/fatih/color v1.9.0/go.mod h1:eQcE1qtQxscV5RaZvpXrrb8Drkc3/DdQ+uUYCNjL+zU=

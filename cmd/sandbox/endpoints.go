@@ -3,11 +3,11 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/ar2r/go-example-module/example"
 	"github.com/ar2r/go-sandbox/cmd/sandbox/colors"
 	"github.com/ar2r/go-sandbox/cmd/sandbox/dtos"
 	"github.com/ar2r/go-sandbox/cmd/sandbox/words"
 	"github.com/gorilla/mux"
-	"math/rand"
 	"net/http"
 )
 
@@ -44,7 +44,7 @@ func (app *application) CreateHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
 
-	res := dtos.PasteBinDto{Id: rand.Uint64(), Title: req.Title, Content: req.Content}
+	res := dtos.PasteBinDto{Id: uint64(example.MyRandInt64()), Title: req.Title, Content: req.Content}
 	json.NewEncoder(w).Encode(res)
 }
 
