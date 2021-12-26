@@ -3,7 +3,7 @@ module github.com/ar2r/go-sandbox
 go 1.17
 
 require (
-	github.com/ar2r/go-example-module v1.3.0 // indirect
+	github.com/ar2r/go-example-module v1.6.0 // indirect
 	github.com/fatih/color v1.13.0 // indirect
 	github.com/fsnotify/fsnotify v1.4.9 // indirect
 	github.com/gorilla/mux v1.8.0 // indirect
