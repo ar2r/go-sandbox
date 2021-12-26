@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"github.com/ar2r/go-example-module/example"
 	"github.com/ar2r/go-sandbox/cmd/sandbox/colors"
-	"github.com/ar2r/go-sandbox/cmd/sandbox/dtos"
 	"github.com/ar2r/go-sandbox/cmd/sandbox/words"
+	"github.com/ar2r/go-sandbox/internal/dtos"
 	"github.com/gorilla/mux"
 	"net/http"
 )
